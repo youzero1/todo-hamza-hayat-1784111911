@@ -2,11 +2,42 @@ import { useCallback, useEffect, useState } from 'react';
 import type { Todo } from '@/types/todo';
 
 const STORAGE_KEY = 'my-tasks:todos:v1';
+const SEEDED_KEY = 'my-tasks:seeded:v1';
+
+function makeId(): string {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
+    return crypto.randomUUID();
+  }
+  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+}
+
+function defaultTodos(): Todo[] {
+  const now = Date.now();
+  const samples: Array<{ title: string; completed: boolean }> = [
+    { title: 'Welcome to My Tasks 👋', completed: false },
+    { title: 'Add your first task', completed: false },
+    { title: 'Double-click a task to edit it', completed: false },
+    { title: 'Check this off when done', completed: true },
+  ];
+  return samples.map((s, i) => ({
+    id: makeId(),
+    title: s.title,
+    completed: s.completed,
+    createdAt: now + i,
+  }));
+}
 
 function loadFromStorage(): Todo[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
+    if (raw === null) {
+      // First ever visit — seed defaults once.
+      if (localStorage.getItem(SEEDED_KEY) !== '1') {
+        localStorage.setItem(SEEDED_KEY, '1');
+        return defaultTodos();
+      }
+      return [];
+    }
     const parsed = JSON.parse(raw);
     if (!Array.isArray(parsed)) return [];
     return parsed.filter(
@@ -20,13 +51,6 @@ function loadFromStorage(): Todo[] {
   } catch {
     return [];
   }
-}
-
-function makeId(): string {
-  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) {
-    return crypto.randomUUID();
-  }
-  return Math.random().toString(36).slice(2) + Date.now().toString(36);
 }
 
 export function useTodos() {
