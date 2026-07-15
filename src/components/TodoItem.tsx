@@ -28,7 +28,6 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
   function commit() {
     const trimmed = draft.trim();
     if (!trimmed) {
-      // empty commit — treat as cancel
       setIsEditing(false);
       setDraft(todo.title);
       return;
@@ -45,7 +44,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
   }
 
   return (
-    <li className="group flex items-center gap-3 rounded-lg border border-slate-100 bg-white px-3 py-2 transition hover:border-slate-200 hover:shadow-sm">
+    <li className="animate-item group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-3.5 py-2.5 transition hover:border-white/20 hover:bg-white/[0.06]">
       <label className="flex items-center cursor-pointer">
         <input
           type="checkbox"
@@ -55,7 +54,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
           aria-label={`Mark "${todo.title}" as ${todo.completed ? 'not done' : 'done'}`}
         />
         <span
-          className="flex h-5 w-5 items-center justify-center rounded-md border-2 border-slate-300 bg-white transition peer-checked:border-red-600 peer-checked:bg-red-600 peer-focus-visible:ring-2 peer-focus-visible:ring-red-300"
+          className="flex h-5 w-5 items-center justify-center rounded-md border-2 border-slate-500/60 bg-transparent transition peer-checked:border-transparent peer-checked:bg-gradient-to-br peer-checked:from-red-500 peer-checked:to-rose-600 peer-checked:shadow-[0_0_12px_rgba(244,63,94,0.5)] peer-focus-visible:ring-2 peer-focus-visible:ring-red-400/40 group-hover:border-slate-400"
           aria-hidden="true"
         >
           {todo.completed && (
@@ -86,16 +85,16 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
             if (e.key === 'Enter') commit();
             else if (e.key === 'Escape') cancel();
           }}
-          className="flex-1 h-8 rounded-md border border-red-200 bg-white px-2 text-sm text-slate-800 outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100"
+          className="flex-1 h-8 rounded-md border border-red-400/40 bg-black/30 px-2 text-sm text-white outline-none focus:border-red-400 focus:ring-2 focus:ring-red-500/20"
         />
       ) : (
         <span
           onDoubleClick={startEdit}
           className={
-            'flex-1 select-none text-sm ' +
+            'flex-1 select-none text-sm transition ' +
             (todo.completed
-              ? 'text-slate-400 line-through'
-              : 'text-slate-800')
+              ? 'text-slate-500 line-through'
+              : 'text-slate-100')
           }
         >
           {todo.title}
@@ -103,11 +102,11 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
       )}
 
       {!isEditing && (
-        <div className="flex items-center gap-1 opacity-60 transition group-hover:opacity-100">
+        <div className="flex items-center gap-1 opacity-0 transition group-hover:opacity-100 focus-within:opacity-100">
           <button
             onClick={startEdit}
             aria-label="Edit task"
-            className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
+            className="rounded-md p-1.5 text-slate-400 hover:bg-white/10 hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-red-400/40 focus-visible:opacity-100"
           >
             <svg
               viewBox="0 0 20 20"
@@ -131,7 +130,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
           <button
             onClick={() => onDelete(todo.id)}
             aria-label="Delete task"
-            className="rounded p-1.5 text-slate-400 hover:bg-rose-50 hover:text-rose-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-300"
+            className="rounded-md p-1.5 text-slate-400 hover:bg-rose-500/15 hover:text-rose-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-rose-400/40 focus-visible:opacity-100"
           >
             <svg
               viewBox="0 0 20 20"
@@ -152,4 +151,3 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
     </li>
   );
 }
-
