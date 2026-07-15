@@ -1,18 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-function Placeholder() {
-  return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 text-slate-500">
-      Loading your tasks…
-    </div>
-  );
-}
+import HomePage from '@/pages/HomePage';
 
 export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Placeholder />} />
+        <Route path="/" element={<HomePage />} />
       </Routes>
     </BrowserRouter>
   );
