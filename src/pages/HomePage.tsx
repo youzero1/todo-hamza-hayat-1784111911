@@ -10,7 +10,7 @@ export default function HomePage() {
   const [filter, setFilter] = useState<Filter>('all');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-indigo-50 py-10 px-4">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-red-50 py-10 px-4">
       <div className="mx-auto max-w-xl">
         <header className="mb-8 text-center">
           <h1 className="text-4xl font-bold tracking-tight text-slate-900">
@@ -46,3 +46,4 @@ export default function HomePage() {
     </div>
   );
 }
+

@@ -55,7 +55,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
           aria-label={`Mark "${todo.title}" as ${todo.completed ? 'not done' : 'done'}`}
         />
         <span
-          className="flex h-5 w-5 items-center justify-center rounded-md border-2 border-slate-300 bg-white transition peer-checked:border-indigo-600 peer-checked:bg-indigo-600 peer-focus-visible:ring-2 peer-focus-visible:ring-indigo-300"
+          className="flex h-5 w-5 items-center justify-center rounded-md border-2 border-slate-300 bg-white transition peer-checked:border-red-600 peer-checked:bg-red-600 peer-focus-visible:ring-2 peer-focus-visible:ring-red-300"
           aria-hidden="true"
         >
           {todo.completed && (
@@ -86,7 +86,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
             if (e.key === 'Enter') commit();
             else if (e.key === 'Escape') cancel();
           }}
-          className="flex-1 h-8 rounded-md border border-indigo-200 bg-white px-2 text-sm text-slate-800 outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+          className="flex-1 h-8 rounded-md border border-red-200 bg-white px-2 text-sm text-slate-800 outline-none focus:border-red-400 focus:ring-2 focus:ring-red-100"
         />
       ) : (
         <span
@@ -107,7 +107,7 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
           <button
             onClick={startEdit}
             aria-label="Edit task"
-            className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300"
+            className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300"
           >
             <svg
               viewBox="0 0 20 20"
@@ -152,3 +152,4 @@ export default function TodoItem({ todo, onToggle, onEdit, onDelete }: Props) {
     </li>
   );
 }
+

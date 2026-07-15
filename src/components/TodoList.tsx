@@ -69,9 +69,9 @@ export default function TodoList({
               key={f}
               onClick={() => onFilterChange(f)}
               className={
-                'px-3 py-1 rounded-md text-xs capitalize transition focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-300 ' +
+                'px-3 py-1 rounded-md text-xs capitalize transition focus:outline-none focus-visible:ring-2 focus-visible:ring-red-300 ' +
                 (filter === f
-                  ? 'bg-white text-indigo-700 shadow-sm'
+                  ? 'bg-white text-red-700 shadow-sm'
                   : 'text-slate-500 hover:text-slate-800')
               }
             >
@@ -91,3 +91,4 @@ export default function TodoList({
     </div>
   );
 }
+

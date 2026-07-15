@@ -23,15 +23,16 @@ export default function TodoInput({ onAdd }: Props) {
         onChange={(e) => setValue(e.target.value)}
         placeholder="What needs doing?"
         aria-label="New task"
-        className="flex-1 h-11 rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100"
+        className="flex-1 h-11 rounded-lg border border-slate-200 bg-white px-4 text-sm text-slate-800 placeholder:text-slate-400 outline-none transition focus:border-red-400 focus:ring-2 focus:ring-red-100"
       />
       <button
         type="submit"
         disabled={!value.trim()}
-        className="h-11 px-5 rounded-lg bg-indigo-600 text-white text-sm font-medium shadow-sm transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300 disabled:bg-slate-300 disabled:cursor-not-allowed"
+        className="h-11 px-5 rounded-lg bg-red-600 text-white text-sm font-medium shadow-sm transition hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-300 disabled:bg-slate-300 disabled:cursor-not-allowed"
       >
         Add
       </button>
     </form>
   );
 }
+
